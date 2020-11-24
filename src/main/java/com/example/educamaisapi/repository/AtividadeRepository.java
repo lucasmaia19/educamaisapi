@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.example.educamaisapi.model.Atividade;
 
 @Repository
-public interface EducaMaisRepository extends JpaRepository<Atividade, Long> {
+public interface AtividadeRepository extends JpaRepository<Atividade, Long> {
 
 }
