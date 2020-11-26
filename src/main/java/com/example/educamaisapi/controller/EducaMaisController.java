@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,13 +40,24 @@ public class EducaMaisController {
 		return educaMaisRepository.findById(id);
 	}
 	
+//	@GetMapping
+//	public void listaTodos
+	
 	@PostMapping
 	public Atividade cadastrar(@RequestBody Atividade atividade) {
 		return educaMaisRepository.save(atividade);
 	}
 	
 	@PostMapping("/upload")
+//	public void uploadFile(@RequestBody Atividade atividade, @RequestParam("file") MultipartFile file) throws IOException {
 	public void uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
+
+//		System.out.println("atividade.categora: " + atividade.getCategoria());
+
+//		System.out.println("atividade.nome: " + atividade.getNome());
+
+//		System.out.println("fileName: " + file.getName());
+
 
 		String message;
 		
