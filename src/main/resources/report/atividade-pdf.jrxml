@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="atividade-pdf" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a98f722c-f0d2-46ee-b984-e2fe0dbced49">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="src\main\resources\conf\conexao-report.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="id" class="java.lang.Long"/>
+	<queryString language="plsql">
+		<![CDATA[SELECT * FROM atividade
+Where id = $P{id}]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="atividade"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="arquivo" class="java.awt.Image">
+		<property name="com.jaspersoft.studio.field.name" value="arquivo"/>
+		<property name="com.jaspersoft.studio.field.label" value="arquivo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="atividade"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="arquivo_extensao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="arquivo_extensao"/>
+		<property name="com.jaspersoft.studio.field.label" value="arquivo_extensao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="atividade"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="arquivo_nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="arquivo_nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="arquivo_nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="atividade"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="arquivo_tamanho" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="arquivo_tamanho"/>
+		<property name="com.jaspersoft.studio.field.label" value="arquivo_tamanho"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="atividade"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="atividade"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tag" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tag"/>
+		<property name="com.jaspersoft.studio.field.label" value="tag"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="atividade"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="20" y="10" width="540" height="60" uuid="9e2b918e-01e9-4b58-b154-d4b2b98a0945"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="30" y="20" width="100" height="30" uuid="b970d05b-f1c0-45a0-9710-f4bbc9c3593a"/>
+				<text><![CDATA[v0.5.7]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="530" splitType="Stretch">
+			<image hAlign="Center" vAlign="Middle" onErrorType="Blank">
+				<reportElement x="110" y="60" width="350" height="470" uuid="4ac0e02b-a81d-4062-807c-f729b2e5d1ac"/>
+				<imageExpression><![CDATA[$F{arquivo}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="80" y="10" width="290" height="30" uuid="78ea0241-9566-4f99-a4e8-d023ce901245">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e9f6c598-3bc5-4399-8e02-3223c21abd74"/>
+				</reportElement>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="10" width="100" height="30" uuid="f92418fb-ac05-4b77-ad72-304a4d64caba">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="85da9b64-7235-433b-ad4c-8ef481b39fdc"/>
+				</reportElement>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tag}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="10" width="60" height="30" uuid="e88ce2d9-654f-412a-9824-d119939ee97e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e9f6c598-3bc5-4399-8e02-3223c21abd74"/>
+				</reportElement>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOME:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="10" width="50" height="30" uuid="86d4384b-ad39-4047-807f-7318b2a20315">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e9f6c598-3bc5-4399-8e02-3223c21abd74"/>
+				</reportElement>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TAG:]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>
