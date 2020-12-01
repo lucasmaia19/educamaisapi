@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.example.educamaisapi.dto.AtividadeDTO;
 import com.example.educamaisapi.model.Atividade;
@@ -59,11 +57,10 @@ public class EducaMaisController {
 	public void gerarPDF(@PathVariable Long id) throws Exception {
 
 		System.out.println(id);
-		
+
 		Map<String, Object> params = new HashMap<>();
 		params.put("id", id);
-		
-//		ReportUtil.reportMakePdf("report/atividade-pdf.jrxml", params);
+
 		ReportUtil.reportMakePdf("report/atividade-pdf.jrxml", params, response);
 	}
 
