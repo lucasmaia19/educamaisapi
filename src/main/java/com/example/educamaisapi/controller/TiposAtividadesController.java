@@ -40,7 +40,7 @@ public class TiposAtividadesController {
 	public List<CampoExperiencia> listaCampoExperiencia() {
 		return campoExperienciaRepository.findAll();
 	}
-	
+
 	@GetMapping("aprendizagem-desenvolvimento")
 	public List<AprendizagemDesenvolvimento> listaAprendizagemDesenvolvimento() {
 		return aprendizagemDesenvolvimentoRepository.findAll();
@@ -76,12 +76,26 @@ public class TiposAtividadesController {
 
 	@GetMapping("aprendizagem-desenvolvimento/filter/campo-experiencia-codigo/{campoExperienciaCodigo}")
 	public List<AprendizagemDesenvolvimento> listaAprendizagemDesenvolvimentoCampoExperienciaCodigo(@PathVariable String campoExperienciaCodigo) {
-		
+
 		System.out.println(campoExperienciaCodigo);
-		
+
 		List<AprendizagemDesenvolvimento> aprendizagemDesenvolvimentosList = aprendizagemDesenvolvimentoRepository.listByCampoExperienciaCodigo(campoExperienciaCodigo);
 
 		return aprendizagemDesenvolvimentosList;
 	}
+	
+	@GetMapping("aprendizagem-desenvolvimento/filter/ce-fe-id/{campoExperienciaId}/{faixaEtariaId}")
+	public List<AprendizagemDesenvolvimento> listaAprendizagemDesenvolvimentoCeFeId(@PathVariable Long campoExperienciaId, 
+			@PathVariable Long faixaEtariaId) {
+		
+		System.out.println(campoExperienciaId);
+		System.out.println(faixaEtariaId);
+		
+		List<AprendizagemDesenvolvimento> aprendizagemDesenvolvimentosList = aprendizagemDesenvolvimentoRepository.listByCeAndFeId(campoExperienciaId, faixaEtariaId);
+		
+		return aprendizagemDesenvolvimentosList;
+	}
+	
+	
 
 }
