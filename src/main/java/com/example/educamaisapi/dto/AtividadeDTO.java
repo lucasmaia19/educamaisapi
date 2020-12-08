@@ -10,7 +10,7 @@ public class AtividadeDTO {
 
 	private String nome;
 
-	private String tag;
+	private String enunciado;
 
 	private MultipartFile arquivo;
 

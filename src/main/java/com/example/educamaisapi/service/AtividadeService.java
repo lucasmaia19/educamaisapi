@@ -19,7 +19,7 @@ public class AtividadeService {
 		Atividade atividade = new Atividade();
 
 		atividade.setNome(atividadeDTO.getNome());
-		atividade.setTag(atividadeDTO.getTag());
+		atividade.setEnunciado(atividadeDTO.getEnunciado());
 
 		if (atividadeDTO.getArquivo() != null) {
 			atividade.setArquivo(atividadeDTO.getArquivo().getBytes());
