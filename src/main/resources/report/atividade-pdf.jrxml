@@ -5,71 +5,101 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="id" class="java.lang.Long"/>
 	<queryString language="plsql">
-		<![CDATA[SELECT * FROM atividade
+		<![CDATA[SELECT * FROM cabecalho
 Where id = $P{id}]]>
 	</queryString>
 	<field name="id" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.name" value="id"/>
 		<property name="com.jaspersoft.studio.field.label" value="id"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="atividade"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cabecalho"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="arquivo" class="byte[]">
-		<property name="com.jaspersoft.studio.field.name" value="arquivo"/>
-		<property name="com.jaspersoft.studio.field.label" value="arquivo"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="atividade"/>
+	<field name="aluno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="aluno"/>
+		<property name="com.jaspersoft.studio.field.label" value="aluno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cabecalho"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="arquivo_extensao" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="arquivo_extensao"/>
-		<property name="com.jaspersoft.studio.field.label" value="arquivo_extensao"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="atividade"/>
+	<field name="data" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="data"/>
+		<property name="com.jaspersoft.studio.field.label" value="data"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cabecalho"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="arquivo_nome" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="arquivo_nome"/>
-		<property name="com.jaspersoft.studio.field.label" value="arquivo_nome"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="atividade"/>
+	<field name="nome_escola" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome_escola"/>
+		<property name="com.jaspersoft.studio.field.label" value="nome_escola"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cabecalho"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="arquivo_tamanho" class="java.lang.Long">
-		<property name="com.jaspersoft.studio.field.name" value="arquivo_tamanho"/>
-		<property name="com.jaspersoft.studio.field.label" value="arquivo_tamanho"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="atividade"/>
+	<field name="cep" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cep"/>
+		<property name="com.jaspersoft.studio.field.label" value="cep"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cabecalho"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="enunciado" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="enunciado"/>
-		<property name="com.jaspersoft.studio.field.label" value="enunciado"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="atividade"/>
+	<field name="email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="email"/>
+		<property name="com.jaspersoft.studio.field.label" value="email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cabecalho"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="nome" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="nome"/>
-		<property name="com.jaspersoft.studio.field.label" value="nome"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="atividade"/>
+	<field name="logradouro" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="logradouro"/>
+		<property name="com.jaspersoft.studio.field.label" value="logradouro"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cabecalho"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="tel" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tel"/>
+		<property name="com.jaspersoft.studio.field.label" value="tel"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cabecalho"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="logo_escola" class="byte[]">
+		<property name="com.jaspersoft.studio.field.name" value="logo_escola"/>
+		<property name="com.jaspersoft.studio.field.label" value="logo_escola"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cabecalho"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="logo_prefeitura" class="byte[]">
+		<property name="com.jaspersoft.studio.field.name" value="logo_prefeitura"/>
+		<property name="com.jaspersoft.studio.field.label" value="logo_prefeitura"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cabecalho"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="professora" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="professora"/>
+		<property name="com.jaspersoft.studio.field.label" value="professora"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cabecalho"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="turma" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="turma"/>
+		<property name="com.jaspersoft.studio.field.label" value="turma"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cabecalho"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Field_1" class="java.lang.String"/>
+	<field name="Field_2" class="java.lang.String"/>
+	<field name="Field_3" class="java.lang.String"/>
+	<field name="Field_4" class="java.lang.String"/>
+	<field name="Field_5" class="java.lang.String"/>
+	<field name="Field_6" class="java.lang.String"/>
+	<field name="Field_7" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
-			<rectangle>
-				<reportElement x="20" y="10" width="540" height="60" uuid="9e2b918e-01e9-4b58-b154-d4b2b98a0945"/>
-			</rectangle>
-			<staticText>
-				<reportElement x="30" y="20" width="100" height="30" uuid="b970d05b-f1c0-45a0-9710-f4bbc9c3593a"/>
-				<text><![CDATA[v0.5.11]]></text>
-			</staticText>
+		<band height="113" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="5" width="99" height="75" uuid="0504df60-e156-4198-80de-bb26875e86ba"/>
+				<imageExpression><![CDATA["$F{logo_prefeitura}"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<detail>
 		<band height="530" splitType="Stretch">
-			<image hAlign="Center" vAlign="Middle" onErrorType="Blank">
-				<reportElement x="115" y="140" width="350" height="380" uuid="4ac0e02b-a81d-4062-807c-f729b2e5d1ac"/>
-				<imageExpression><![CDATA[$F{arquivo}]]></imageExpression>
-			</image>
 			<textField>
 				<reportElement x="20" y="10" width="540" height="30" uuid="78ea0241-9566-4f99-a4e8-d023ce901245">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e9f6c598-3bc5-4399-8e02-3223c21abd74"/>
@@ -80,7 +110,7 @@ Where id = $P{id}]]>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="20" y="50" width="540" height="90" uuid="f92418fb-ac05-4b77-ad72-304a4d64caba">
+				<reportElement x="10" y="50" width="540" height="90" uuid="f92418fb-ac05-4b77-ad72-304a4d64caba">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="85da9b64-7235-433b-ad4c-8ef481b39fdc"/>
 				</reportElement>
 				<textElement textAlignment="Justified">
@@ -88,6 +118,14 @@ Where id = $P{id}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{enunciado}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="490" y="500" width="80" height="20" uuid="b970d05b-f1c0-45a0-9710-f4bbc9c3593a"/>
+				<text><![CDATA[v0.5.11]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle" onErrorType="Blank">
+				<reportElement x="102" y="140" width="350" height="380" uuid="4dfd3601-c83e-4d6e-aeed-8f97658b9501"/>
+				<imageExpression><![CDATA[$F{arquivo}]]></imageExpression>
+			</image>
 		</band>
 	</detail>
 </jasperReport>

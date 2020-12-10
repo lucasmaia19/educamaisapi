@@ -1,0 +1,6 @@
+
+INSERT INTO `faixa_etaria` (`id`, `codigo`, `descricao`) VALUES
+	(1, 'EI01', 'Bebês (zero a 1 ano e 6 meses)'),
+	(2, 'EI02', 'Crianças bem pequenas (1 ano e 7 meses a 3 anos e 11 meses)'),
+	(3, 'EI03', 'Crianças pequenas (4 anos a 5 anos e 11 meses)');
+

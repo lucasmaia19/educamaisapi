@@ -1,0 +1,7 @@
+
+INSERT INTO `campo_experiencia` (`id`, `codigo`, `descricao`) VALUES
+	(1, 'TS', 'Traços, sons, cores e formas'),
+	(2, 'EO', 'O eu, o outro e o nós'),
+	(3, 'CG', 'Corpo, gestos e movimentos'),
+	(4, 'EF', 'Escuta, fala, pensamento e imaginação'),
+	(5, 'ET', 'Espaços, tempos, quantidades, relações e transformações');

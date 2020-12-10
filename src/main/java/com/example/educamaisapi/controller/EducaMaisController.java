@@ -23,9 +23,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.educamaisapi.dto.AtividadeDTO;
+import com.example.educamaisapi.dto.CabecalhoDTO;
 import com.example.educamaisapi.model.Atividade;
+import com.example.educamaisapi.model.Cabecalho;
 import com.example.educamaisapi.repository.AtividadeRepository;
 import com.example.educamaisapi.service.AtividadeService;
+import com.example.educamaisapi.service.CabecalhoService;
 import com.example.educamaisapi.util.ReportUtil;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -38,6 +41,9 @@ public class EducaMaisController {
 
 	@Autowired
 	private AtividadeService atividadeService;
+
+	@Autowired
+	private CabecalhoService cabecalhoService;
 
 	@Autowired
 	private HttpServletResponse response;
@@ -74,6 +80,13 @@ public class EducaMaisController {
 	@PostMapping("/upload-com-dados")
 	public ResponseEntity<Atividade> uploadComDados(@ModelAttribute AtividadeDTO atividadeDTO) throws IOException {
 		return ResponseEntity.ok(atividadeService.uploadComDados(atividadeDTO));
+	}
+
+	@PostMapping("/upload-com-dados-cabecalho")
+	public ResponseEntity<Cabecalho> uploadComDadosCabecalho(@ModelAttribute CabecalhoDTO cabecalhoDTO) throws IOException {
+		return ResponseEntity.ok(cabecalhoService.uploadComDadosCabecalho(cabecalhoDTO));
+	
+	
 	}
 
 	@PutMapping("/{id}")

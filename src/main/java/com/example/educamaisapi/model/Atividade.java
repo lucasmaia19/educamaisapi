@@ -24,7 +24,7 @@ public class Atividade implements Serializable{
 	private String nome;
 
 	private String enunciado;
-
+	
 	@Lob
 	private byte[] arquivo;
 
