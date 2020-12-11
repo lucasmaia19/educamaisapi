@@ -27,6 +27,7 @@ import com.example.educamaisapi.dto.CabecalhoDTO;
 import com.example.educamaisapi.model.Atividade;
 import com.example.educamaisapi.model.Cabecalho;
 import com.example.educamaisapi.repository.AtividadeRepository;
+import com.example.educamaisapi.repository.CabecalhoRepository;
 import com.example.educamaisapi.service.AtividadeService;
 import com.example.educamaisapi.service.CabecalhoService;
 import com.example.educamaisapi.util.ReportUtil;
@@ -38,6 +39,9 @@ public class EducaMaisController {
 
 	@Autowired
 	private AtividadeRepository educaMaisRepository;
+
+	@Autowired
+	private CabecalhoRepository cabecalhoRepository;
 
 	@Autowired
 	private AtividadeService atividadeService;
@@ -84,9 +88,22 @@ public class EducaMaisController {
 
 	@PostMapping("/upload-com-dados-cabecalho")
 	public ResponseEntity<Cabecalho> uploadComDadosCabecalho(@ModelAttribute CabecalhoDTO cabecalhoDTO) throws IOException {
+		
+//		Instant dataAquisicaoInstant = Instant.parse(cabecalhoDTO.getData());
+//		OffsetDateTime dataAquisicaoOffSet = dataAquisicaoInstant.atOffset(ZoneOffset.UTC); 
+//
+//		DateTimeFormatter data = DateTimeFormatter.ofPattern("ddMMyyyy");
+//		String dataString = dataAquisicaoOffSet.format(data);
+//
+//		cabecalhoDTO.setData(dataString);
+
 		return ResponseEntity.ok(cabecalhoService.uploadComDadosCabecalho(cabecalhoDTO));
 	
-	
+	}
+
+	@GetMapping("/cabecalho")
+	public List<Cabecalho> listarCabecalho() {
+		return cabecalhoRepository.findAll();
 	}
 
 	@PutMapping("/{id}")

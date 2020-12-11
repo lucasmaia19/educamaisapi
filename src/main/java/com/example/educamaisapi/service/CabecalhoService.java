@@ -5,11 +5,8 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.educamaisapi.dto.AtividadeDTO;
 import com.example.educamaisapi.dto.CabecalhoDTO;
-import com.example.educamaisapi.model.Atividade;
 import com.example.educamaisapi.model.Cabecalho;
-import com.example.educamaisapi.repository.AtividadeRepository;
 import com.example.educamaisapi.repository.CabecalhoRepository;
 
 @Service

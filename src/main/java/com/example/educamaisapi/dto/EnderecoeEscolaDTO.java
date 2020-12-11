@@ -2,10 +2,6 @@ package com.example.educamaisapi.dto;
 
 import javax.persistence.Embeddable;
 
-import org.springframework.web.multipart.MultipartFile;
-
-import com.example.educamaisapi.model.EnderecoEscola;
-
 import lombok.Getter;
 import lombok.Setter;
 

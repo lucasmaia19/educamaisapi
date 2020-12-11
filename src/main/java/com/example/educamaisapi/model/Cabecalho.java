@@ -1,15 +1,15 @@
 package com.example.educamaisapi.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 
-import com.example.educamaisapi.dto.EnderecoeEscolaDTO;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -28,7 +28,8 @@ public class Cabecalho implements Serializable{
 	
 	private String turma;
 	
-	private String data;
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	private LocalDate data;
 	
 	private String aluno;
 

@@ -1,9 +1,9 @@
 package com.example.educamaisapi.dto;
 
-import javax.persistence.Embedded;
+import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
-
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +15,12 @@ public class CabecalhoDTO {
 
 	private String turma;
 
-	private String data;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate data;
+
+//	@JsonFormat(pattern="yyyy-MM-dd")
+	//@DateTimeFormat(pattern = "yyyy-MM-dd")
+//	private LocalDate dataProva;
 
 	private String aluno;
 
