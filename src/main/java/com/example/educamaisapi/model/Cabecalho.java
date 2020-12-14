@@ -27,8 +27,8 @@ public class Cabecalho implements Serializable{
 	private String professora;
 	
 	private String turma;
-	
-	@DateTimeFormat(pattern = "yyyy/MM/dd")
+
+//	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private LocalDate data;
 	
 	private String aluno;

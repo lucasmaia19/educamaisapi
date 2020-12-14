@@ -3,6 +3,7 @@ package com.example.educamaisapi.dto;
 import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
@@ -15,12 +16,8 @@ public class CabecalhoDTO {
 
 	private String turma;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(iso = ISO.DATE)
 	private LocalDate data;
-
-//	@JsonFormat(pattern="yyyy-MM-dd")
-	//@DateTimeFormat(pattern = "yyyy-MM-dd")
-//	private LocalDate dataProva;
 
 	private String aluno;
 
@@ -30,7 +27,7 @@ public class CabecalhoDTO {
 	private String cep;
 	private String email;
 
-	
+
 //	@Embedded
 //	private EnderecoeEscolaDTO enderecoEscolaDTO;
 

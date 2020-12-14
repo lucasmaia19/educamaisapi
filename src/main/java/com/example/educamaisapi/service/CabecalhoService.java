@@ -18,9 +18,12 @@ public class CabecalhoService {
 	public Cabecalho uploadComDadosCabecalho(CabecalhoDTO cabecalhoDTO) throws IOException {
 		Cabecalho cabecalho = new Cabecalho();
 
+		if (cabecalhoDTO.getData() != null) {
+			cabecalho.setData(cabecalhoDTO.getData());
+		}
+		
 		cabecalho.setProfessora(cabecalhoDTO.getProfessora());
 		cabecalho.setTurma(cabecalhoDTO.getTurma());
-		cabecalho.setData(cabecalhoDTO.getData());
 		cabecalho.setAluno(cabecalhoDTO.getAluno());
 		cabecalho.setNomeEscola(cabecalhoDTO.getNomeEscola());
 		cabecalho.setLogradouro(cabecalhoDTO.getLogradouro());
