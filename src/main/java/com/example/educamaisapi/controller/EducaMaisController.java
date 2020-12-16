@@ -62,17 +62,21 @@ public class EducaMaisController {
 		return educaMaisRepository.findById(id);
 	}
 
-	@GetMapping("/gerar-pdf/{id}")
-	public void gerarPDF(@PathVariable Long id) throws Exception {
-		
-		System.out.println(id);
-		
+	@GetMapping("/gerar-pdf/{id_atividade}/{id_cabecalho}")
+	public void gerarPDF(@PathVariable Long id_atividade, @PathVariable Long id_cabecalho) throws Exception {
+
+		System.out.println(id_atividade);
+		System.out.println(id_cabecalho);
+
 		Map<String, Object> params = new HashMap<>();
-		params.put("id", id);
-		
+		params.put("atividade_id", id_atividade);
+		params.put("cabecalho_id", id_cabecalho);
+
+		System.out.println(params);
+
 		ReportUtil.reportMakePdf("report/atividade-pdf.jrxml", params, response);
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public Map<String, Object> deletarCadastro(@PathVariable Long id) {
 		educaMaisRepository.deleteById(id);
@@ -115,5 +119,5 @@ public class EducaMaisController {
 		
 		return educaMaisRepository.save(atividadeSaved);
 	}
-	
+
 }

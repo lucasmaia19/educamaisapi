@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,10 +22,13 @@ public class Atividade implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+//	@OneToOne
+//	private Cabecalho cabecalho;
+
 	private String nome;
 
 	private String enunciado;
-	
+
 	@Lob
 	private byte[] arquivo;
 
