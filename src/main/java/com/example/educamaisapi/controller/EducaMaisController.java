@@ -84,6 +84,16 @@ public class EducaMaisController {
 		Map<String, Object> responseMap = new HashMap<>();
 		return responseMap;
 	}
+	
+	@PutMapping("/{id}")
+	public Atividade atualizarCadastro(@RequestBody Atividade atividade, @PathVariable Long id) {
+		
+		Atividade atividadeSaved = educaMaisRepository.findById(id).get();
+		
+		BeanUtils.copyProperties(atividade, atividadeSaved, "id");
+		
+		return educaMaisRepository.save(atividadeSaved);
+	}
 
 	@PostMapping("/upload-com-dados")
 	public ResponseEntity<Atividade> uploadComDados(@ModelAttribute AtividadeDTO atividadeDTO) throws IOException {
@@ -109,15 +119,30 @@ public class EducaMaisController {
 	public List<Cabecalho> listarCabecalho() {
 		return cabecalhoRepository.findAll();
 	}
+	
+	@DeleteMapping("cabecalho/{id}")
+	public Map<String, Object> deletarCabecalho(@PathVariable Long id) {
+		cabecalhoRepository.deleteById(id);
 
-	@PutMapping("/{id}")
-	public Atividade atualizarCadastro(@RequestBody Atividade atividade, @PathVariable Long id) {
+		Map<String, Object> responseMap = new HashMap<>();
+		return responseMap;
+	}
+
+	@PutMapping("cabecalho/{id}")
+	public Cabecalho atualizarCabecalho(@RequestBody Cabecalho cabecalho, @PathVariable Long id) {
 		
-		Atividade atividadeSaved = educaMaisRepository.findById(id).get();
+		Cabecalho cabecalhoSaved = cabecalhoRepository.findById(id).get();
 		
-		BeanUtils.copyProperties(atividade, atividadeSaved, "id");
-		
-		return educaMaisRepository.save(atividadeSaved);
+		BeanUtils.copyProperties(cabecalho, cabecalhoSaved, "id");
+
+		return cabecalhoRepository.save(cabecalhoSaved);
+	}
+	
+	@GetMapping("cabecalho/{id}")
+	public java.util.Optional<Cabecalho> consultarIdCabecalho(@PathVariable Long id) {
+
+		return cabecalhoRepository.findById(id);
+
 	}
 
 }
