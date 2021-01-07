@@ -21,13 +21,13 @@ public class AtividadeDTO {
 
 	private MultipartFile arquivo;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	private FaixaEtaria faixaEtaria;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	private CampoExperiencia campoExperiencia;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	private AprendizagemDesenvolvimento aprendizagemDesenvolvimento;
 
 }

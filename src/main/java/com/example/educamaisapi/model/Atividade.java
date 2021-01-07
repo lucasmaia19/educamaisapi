@@ -39,13 +39,13 @@ public class Atividade implements Serializable{
 
 	private Long arquivoTamanho = 0L;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	private FaixaEtaria faixaEtaria;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	private CampoExperiencia campoExperiencia;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	private AprendizagemDesenvolvimento aprendizagemDesenvolvimento;
 	
 }
