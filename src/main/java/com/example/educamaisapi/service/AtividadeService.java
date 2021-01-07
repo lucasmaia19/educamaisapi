@@ -20,6 +20,8 @@ public class AtividadeService {
 
 		atividade.setNome(atividadeDTO.getNome());
 		atividade.setEnunciado(atividadeDTO.getEnunciado());
+		atividade.setFaixaEtaria(atividadeDTO.getFaixaEtaria());
+		atividade.setCampoExperiencia(atividadeDTO.getCampoExperiencia());
 
 		if (atividadeDTO.getArquivo() != null) {
 			atividade.setArquivo(atividadeDTO.getArquivo().getBytes());

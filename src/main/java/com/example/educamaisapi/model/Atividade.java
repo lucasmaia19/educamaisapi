@@ -2,6 +2,7 @@ package com.example.educamaisapi.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -37,5 +38,11 @@ public class Atividade implements Serializable{
 	private String arquivoExtensao;
 
 	private Long arquivoTamanho = 0L;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private FaixaEtaria faixaEtaria;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	private CampoExperiencia campoExperiencia;
 
 }

@@ -1,6 +1,12 @@
 package com.example.educamaisapi.dto;
 
+import javax.persistence.CascadeType;
+import javax.persistence.OneToOne;
+
 import org.springframework.web.multipart.MultipartFile;
+
+import com.example.educamaisapi.model.CampoExperiencia;
+import com.example.educamaisapi.model.FaixaEtaria;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,5 +19,11 @@ public class AtividadeDTO {
 	private String enunciado;
 
 	private MultipartFile arquivo;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private FaixaEtaria faixaEtaria;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	private CampoExperiencia campoExperiencia;
 
 }
