@@ -44,5 +44,8 @@ public class Atividade implements Serializable{
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private CampoExperiencia campoExperiencia;
-
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private AprendizagemDesenvolvimento aprendizagemDesenvolvimento;
+	
 }

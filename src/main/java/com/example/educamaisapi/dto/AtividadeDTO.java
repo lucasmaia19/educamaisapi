@@ -5,6 +5,7 @@ import javax.persistence.OneToOne;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.educamaisapi.model.AprendizagemDesenvolvimento;
 import com.example.educamaisapi.model.CampoExperiencia;
 import com.example.educamaisapi.model.FaixaEtaria;
 
@@ -25,5 +26,8 @@ public class AtividadeDTO {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private CampoExperiencia campoExperiencia;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private AprendizagemDesenvolvimento aprendizagemDesenvolvimento;
 
 }
