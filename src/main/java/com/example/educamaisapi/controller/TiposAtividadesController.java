@@ -16,7 +16,7 @@ import com.example.educamaisapi.repository.AprendizagemDesenvolvimentoRepository
 import com.example.educamaisapi.repository.CampoExperienciaRepository;
 import com.example.educamaisapi.repository.FaixaEtariaRepository;
 
-@CrossOrigin(origins = "https://educa-mais-ui.herokuapp.com")
+@CrossOrigin(origins = "https://educa-mais-ui.herokuapp.com/atividade")
 //@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("atividade")
