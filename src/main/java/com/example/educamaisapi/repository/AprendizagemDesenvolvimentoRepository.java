@@ -22,12 +22,12 @@ public interface AprendizagemDesenvolvimentoRepository extends JpaRepository<Apr
 
 	@Query(value = "select * from aprendizagem_desenvolvimento where campo_experiencia_id = :campo_experiencia_id", nativeQuery = true)
 	public List<AprendizagemDesenvolvimento> listByCampoExperienciaId(@Param("campo_experiencia_id") Long campoExperienciaId);
-	
+
 	@Query(value = "select * from aprendizagem_desenvolvimento ad"
 			+ " join campo_experiencia ce on ad.campo_experiencia_id = ce.id"
 			+ " where ce.codigo = :codigo", nativeQuery = true)
 	public List<AprendizagemDesenvolvimento> listByCampoExperienciaCodigo(@Param("codigo") String codigo);
-	
+
 	@Query(value = "select * from aprendizagem_desenvolvimento where campo_experiencia_id = :campo_experiencia_id and"
 			+ " faixa_etaria_id = :faixa_etaria_id", nativeQuery = true)
 	public List<AprendizagemDesenvolvimento> listByCeAndFeId(@Param("campo_experiencia_id") Long campoExperienciaId,
