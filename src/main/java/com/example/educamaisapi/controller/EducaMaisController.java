@@ -26,14 +26,15 @@ import com.example.educamaisapi.dto.AtividadeDTO;
 import com.example.educamaisapi.dto.CabecalhoDTO;
 import com.example.educamaisapi.model.Atividade;
 import com.example.educamaisapi.model.Cabecalho;
+import com.example.educamaisapi.model.Teste2;
 import com.example.educamaisapi.repository.AtividadeRepository;
 import com.example.educamaisapi.repository.CabecalhoRepository;
 import com.example.educamaisapi.service.AtividadeService;
 import com.example.educamaisapi.service.CabecalhoService;
 import com.example.educamaisapi.util.ReportUtil;
 
-@CrossOrigin(origins = "https://educa-mais-ui.herokuapp.com")
-//@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "https://educa-mais-ui.herokuapp.com")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("atividade")
 public class EducaMaisController {
@@ -144,6 +145,11 @@ public class EducaMaisController {
 
 		return cabecalhoRepository.findById(id);
 
+	}
+	
+	@PostMapping("/teste")
+	public ResponseEntity<Teste2> teste(@ModelAttribute Teste2 teste2) throws IOException {
+		return ResponseEntity.ok((teste2));
 	}
 
 }
