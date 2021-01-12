@@ -143,13 +143,16 @@ public class EducaMaisController {
 	@GetMapping("cabecalho/{id}")
 	public java.util.Optional<Cabecalho> consultarIdCabecalho(@PathVariable Long id) {
 
-		return cabecalhoRepository.findById(id);
+	return cabecalhoRepository.findById(id);
 
 	}
-	
+
 	@PostMapping("/teste")
-	public ResponseEntity<Teste2> teste(@ModelAttribute Teste2 teste2) throws IOException {
-		return ResponseEntity.ok((teste2));
+//	public Object teste(@ModelAttribute List<Teste2> teste2) throws IOException {
+	public Object teste(@RequestBody List<Teste2> teste2) throws IOException {
+//	public Object teste(@ModelAttribute Teste2 teste2) throws IOException {
+//	public Object teste(@ModelAttribute Object teste2) throws IOException {
+		return teste2;
 	}
 
 }
