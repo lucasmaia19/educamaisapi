@@ -4,6 +4,7 @@ import java.nio.charset.StandardCharsets;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Component;
@@ -24,6 +25,14 @@ public class LogInterceptor implements HandlerInterceptor {
 		
 		String paramQuery = request.getQueryString();
 		String paramBody = IOUtils.toString(request.getInputStream(), StandardCharsets.UTF_8);
+		
+		String paramParts = "";
+		//for (Part p : request.getParts()) {
+			//log.info("Part Name:" + p.getName());
+			//log.info("Part Content:" + request.getPart(p.getName()));
+			//log.info("Part inpuStream:" + IOUtils.toString(request.getPart(p.getName()).getInputStream(), StandardCharsets.UTF_8));
+			//paramParts += IOUtils.toString(request.getPart(p.getName()).getInputStream(), StandardCharsets.UTF_8);
+		//}
 
 		return true;
 	}
