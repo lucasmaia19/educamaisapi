@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.educamaisapi.dto.AtividadeDTO;
 import com.example.educamaisapi.dto.CabecalhoDTO;
@@ -102,8 +103,12 @@ public class EducaMaisController {
 	}
 
 	@PostMapping("/upload-com-dados")
-	public ResponseEntity<Atividade> uploadComDados(@ModelAttribute AtividadeDTO atividadeDTO) throws IOException {
-		return ResponseEntity.ok(atividadeService.uploadComDados(atividadeDTO));
+	public ResponseEntity<Atividade> uploadComDados(@ModelAttribute AtividadeDTO atividadeDTO, @RequestPart String opcoes) throws IOException {
+
+		ObjectMapper mapper = new ObjectMapper(); 
+		Teste2 teste2 = mapper.readValue(opcoes, Teste2.class);
+
+		return ResponseEntity.ok(atividadeService.uploadComDados(atividadeDTO, teste2));
 	}
 
 	@PostMapping("/upload-com-dados-cabecalho")
@@ -151,34 +156,35 @@ public class EducaMaisController {
 
 	}
 
-//	@PostMapping("/teste")
-	@PostMapping(value = "/teste", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
-//	public Object teste(@ModelAttribute Teste2 teste2) throws IOException {
-//	public Object teste(@ModelAttribute List<Teste2> teste2) throws IOException {
-//	public Object teste(@RequestBody List<Teste2> teste2) throws IOException {
-//	public Object teste(@ModelAttribute Teste2 teste2) throws IOException {
-//	public Object teste(@ModelAttribute Object teste2) throws IOException {
-//	public Object teste(@ModelAttribute Object teste2) throws IOException {
-//	public Object teste(@RequestParam Teste2 teste2) throws IOException {
-//	public Object teste(@RequestParam List<Teste2> teste2) throws IOException {
-	
-//	public Object teste(@RequestPart Teste2 opcoes) throws IOException {
-//	public Object teste(@RequestPart String opcoes) throws IOException {  // Funciona
-//	public Object teste(@ModelAttribute String opcoes) throws IOException {
-//	public Object teste(@ModelAttribute Object opcoes) throws IOException {
-//	public Object teste(@ModelAttribute(name = "opcoes") Teste2 opcoes) throws IOException {
-	public ResponseEntity<Teste2> teste(@RequestPart String opcoes) throws IOException {
-
-		ObjectMapper mapper = new ObjectMapper();
-		Teste2 teste2 = mapper.readValue(opcoes, Teste2.class);
-
-		String resposta = "";
-		for (MultSelectDTO item : teste2.getNome()) {
-			System.out.println(item);
-			resposta += item + "; ";
-		}
-	
-		return ResponseEntity.ok(teste2);
-	}
+////	@PostMapping("/teste")
+//	@PostMapping(value = "/teste", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+////	public Object teste(@ModelAttribute Teste2 teste2) throws IOException {
+////	public Object teste(@ModelAttribute List<Teste2> teste2) throws IOException {
+////	public Object teste(@RequestBody List<Teste2> teste2) throws IOException {
+////	public Object teste(@ModelAttribute Teste2 teste2) throws IOException {
+////	public Object teste(@ModelAttribute Object teste2) throws IOException {
+////	public Object teste(@ModelAttribute Object teste2) throws IOException {
+////	public Object teste(@RequestParam Teste2 teste2) throws IOException {
+////	public Object teste(@RequestParam List<Teste2> teste2) throws IOException {
+//	
+////	public Object teste(@RequestPart Teste2 opcoes) throws IOException {
+////	public Object teste(@RequestPart String opcoes) throws IOException {  // Funciona
+////	public Object teste(@ModelAttribute String opcoes) throws IOException {
+////	public Object teste(@ModelAttribute Object opcoes) throws IOException {
+////	public Object teste(@ModelAttribute(name = "opcoes") Teste2 opcoes) throws IOException {
+//	public ResponseEntity<Teste2> teste(@RequestPart String opcoes, @RequestPart MultipartFile file) throws IOException {
+//	public ResponseEntity<Teste2> teste(@RequestPart String opcoes) throws IOException {
+//
+//		ObjectMapper mapper = new ObjectMapper(); 
+//		Teste2 teste2 = mapper.readValue(opcoes, Teste2.class);
+//
+//		String resposta = "";
+//		for (MultSelectDTO item : teste2.getNome()) {
+//			System.out.println(item);
+//			resposta += item + "; ";
+//		}
+//	
+//		return ResponseEntity.ok(teste2);
+//	}
 
 }

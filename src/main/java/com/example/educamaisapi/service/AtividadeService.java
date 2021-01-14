@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.educamaisapi.dto.AtividadeDTO;
 import com.example.educamaisapi.model.Atividade;
+import com.example.educamaisapi.model.Teste2;
 import com.example.educamaisapi.repository.AtividadeRepository;
 
 @Service
@@ -15,7 +16,7 @@ public class AtividadeService {
 	@Autowired
 	private AtividadeRepository atividadeRepository;
 
-	public Atividade uploadComDados(AtividadeDTO atividadeDTO) throws IOException {
+	public Atividade uploadComDados(AtividadeDTO atividadeDTO, Teste2 teste2) throws IOException {
 		Atividade atividade = new Atividade();
 
 		atividade.setNome(atividadeDTO.getNome());
