@@ -1,6 +1,9 @@
 package com.example.educamaisapi.dto;
 
-import javax.persistence.CascadeType;
+import java.util.List;
+
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -21,8 +24,8 @@ public class AtividadeDTO {
 
 	private MultipartFile arquivo;
 	
-	@OneToOne
-	private FaixaEtaria faixaEtaria;
+	@OneToMany()
+	private List<FaixaEtaria> faixaEtaria;
 
 	@OneToOne
 	private CampoExperiencia campoExperiencia;
