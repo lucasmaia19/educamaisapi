@@ -1,6 +1,7 @@
 package com.example.educamaisapi.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,16 +23,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.example.educamaisapi.dto.AtividadeDTO;
 import com.example.educamaisapi.dto.CabecalhoDTO;
 import com.example.educamaisapi.model.Atividade;
 import com.example.educamaisapi.model.Cabecalho;
+import com.example.educamaisapi.model.FaixaEtaria;
 import com.example.educamaisapi.model.Teste2;
 import com.example.educamaisapi.model.dto.MultSelectDTO;
 import com.example.educamaisapi.repository.AtividadeRepository;
 import com.example.educamaisapi.repository.CabecalhoRepository;
+import com.example.educamaisapi.repository.FaixaEtariaRepository;
 import com.example.educamaisapi.service.AtividadeService;
 import com.example.educamaisapi.service.CabecalhoService;
 import com.example.educamaisapi.util.ReportUtil;
@@ -49,6 +50,9 @@ public class EducaMaisController {
 
 	@Autowired
 	private CabecalhoRepository cabecalhoRepository;
+	
+	@Autowired
+	private FaixaEtariaRepository faixaEtariaRepository;
 
 	@Autowired
 	private AtividadeService atividadeService;
@@ -105,10 +109,39 @@ public class EducaMaisController {
 	@PostMapping("/upload-com-dados")
 	public ResponseEntity<Atividade> uploadComDados(@ModelAttribute AtividadeDTO atividadeDTO, @RequestPart String opcoes) throws IOException {
 
+//		ObjectMapper mapper = new ObjectMapper(); 
+//		Teste2 teste2 = mapper.readValue(opcoes, Teste2.class);
+		
 		ObjectMapper mapper = new ObjectMapper(); 
-		Teste2 teste2 = mapper.readValue(opcoes, Teste2.class);
+		Atividade faixaEtariaRes = mapper.readValue(opcoes, Atividade.class);
+		
+		List<FaixaEtaria> faixaEtariaList = new ArrayList<>();
+		
+//		for (MultSelectDTO multSelectDTO : teste2.getNome()) {
+//			FaixaEtaria faixaEtariaSaved = faixaEtariaRepository.findById(multSelectDTO.getId()).get();
+//			faixaEtariaList.add(faixaEtariaSaved);
+//		}
+		
+		for (FaixaEtaria atividade : faixaEtariaRes.getFaixaEtariaList()) {
+		FaixaEtaria faixaEtariaSaved = faixaEtariaRepository.findById(atividade.getId()).get();
+		faixaEtariaList.add(faixaEtariaSaved);
+	}
 
-		return ResponseEntity.ok(atividadeService.uploadComDados(atividadeDTO, teste2));
+//		ObjectMapper mapper = new ObjectMapper(); 
+//		Atividade faixaEtariaRes = mapper.readValue(opcoes, Atividade.class);
+//
+//		List<FaixaEtaria> faixaEtariaList = new ArrayList<>();
+//
+//		for (FaixaEtaria atividade : faixaEtariaRes.getFaixaEtariaList()) {
+//			FaixaEtaria faixaEtariaSaved = faixaEtariaRepository.findById(atividade.getId()).get();
+//			faixaEtariaList.add(faixaEtariaSaved);
+//		}
+
+//		atividade.setFaixaEtariaList(faixaEtariaList);
+
+//		educaMaisRepository.save(atividade);
+
+		return ResponseEntity.ok(atividadeService.uploadComDados(atividadeDTO, faixaEtariaList));
 	}
 
 	@PostMapping("/upload-com-dados-cabecalho")
@@ -156,7 +189,7 @@ public class EducaMaisController {
 
 	}
 
-////	@PostMapping("/teste")
+	@PostMapping("/teste")
 //	@PostMapping(value = "/teste", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
 ////	public Object teste(@ModelAttribute Teste2 teste2) throws IOException {
 ////	public Object teste(@ModelAttribute List<Teste2> teste2) throws IOException {
@@ -173,10 +206,10 @@ public class EducaMaisController {
 ////	public Object teste(@ModelAttribute Object opcoes) throws IOException {
 ////	public Object teste(@ModelAttribute(name = "opcoes") Teste2 opcoes) throws IOException {
 //	public ResponseEntity<Teste2> teste(@RequestPart String opcoes, @RequestPart MultipartFile file) throws IOException {
-//	public ResponseEntity<Teste2> teste(@RequestPart String opcoes) throws IOException {
+	public ResponseEntity<Teste2> teste(@RequestPart String opcoes) throws IOException {
 //
-//		ObjectMapper mapper = new ObjectMapper(); 
-//		Teste2 teste2 = mapper.readValue(opcoes, Teste2.class);
+		ObjectMapper mapper = new ObjectMapper(); 
+		Teste2 teste2 = mapper.readValue(opcoes, Teste2.class);
 //
 //		String resposta = "";
 //		for (MultSelectDTO item : teste2.getNome()) {
@@ -184,7 +217,7 @@ public class EducaMaisController {
 //			resposta += item + "; ";
 //		}
 //	
-//		return ResponseEntity.ok(teste2);
-//	}
+		return ResponseEntity.ok(teste2);
+	}
 
 }

@@ -13,16 +13,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
-@Getter @Setter
-@ToString
-public class Atividade implements Serializable{
+@Getter
+@Setter
+//@ToString
+public class Atividade implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -46,8 +48,12 @@ public class Atividade implements Serializable{
 
 	private Long arquivoTamanho = 0L;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@ManyToMany
 	private List<FaixaEtaria> faixaEtariaList = new ArrayList<>();
+
+	
+//	@ManyToMany
+//	private List faixaEtaria;
 
 //	@OneToMany(mappedBy = "atividade", cascade = CascadeType.ALL)
 //	private List<FaixaEtaria> faixaEtariaList = new ArrayList<>();

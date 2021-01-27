@@ -1,7 +1,9 @@
 package com.example.educamaisapi.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -24,8 +26,13 @@ public class AtividadeDTO {
 
 	private MultipartFile arquivo;
 	
-	@OneToMany()
-	private List<FaixaEtaria> faixaEtaria;
+	@ManyToMany
+//	@JoinTable(name = "atividade_has_faixaEtaria", joinColumns = @JoinColumn(name = "faixaEtaria_id"),
+//				inverseJoinColumns = @JoinColumn(name = "faixaEtaria_id") )
+	private List<FaixaEtaria> faixaEtariaList = new ArrayList<>();
+	
+//	@OneToMany()
+//	private List<FaixaEtaria> faixaEtaria;
 
 	@OneToOne
 	private CampoExperiencia campoExperiencia;

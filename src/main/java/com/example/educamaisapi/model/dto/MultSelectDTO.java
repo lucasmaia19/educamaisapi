@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 public class MultSelectDTO {
 
-	private String id;
+	private Long id;
 
 	private String nome;
 
