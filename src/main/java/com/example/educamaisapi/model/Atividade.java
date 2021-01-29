@@ -32,9 +32,6 @@ public class Atividade implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-//	@OneToOne
-//	private Cabecalho cabecalho;
-
 	private String nome;
 
 	private String enunciado;
@@ -51,17 +48,7 @@ public class Atividade implements Serializable {
 	@ManyToMany
 	private List<FaixaEtaria> faixaEtariaList = new ArrayList<>();
 
-	
-//	@ManyToMany
-//	private List faixaEtaria;
-
-//	@OneToMany(mappedBy = "atividade", cascade = CascadeType.ALL)
-//	private List<FaixaEtaria> faixaEtariaList = new ArrayList<>();
-
-//	@OneToOne
-//	private CampoExperiencia campoExperiencia;
-
-//	@OneToOne
-//	private AprendizagemDesenvolvimento aprendizagemDesenvolvimento;
+	@ManyToMany
+	private List<CampoExperiencia> campoExperienciaList = new ArrayList<>();
 
 }

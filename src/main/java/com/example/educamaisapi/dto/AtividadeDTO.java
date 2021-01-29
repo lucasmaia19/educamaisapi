@@ -27,15 +27,10 @@ public class AtividadeDTO {
 	private MultipartFile arquivo;
 	
 	@ManyToMany
-//	@JoinTable(name = "atividade_has_faixaEtaria", joinColumns = @JoinColumn(name = "faixaEtaria_id"),
-//				inverseJoinColumns = @JoinColumn(name = "faixaEtaria_id") )
 	private List<FaixaEtaria> faixaEtariaList = new ArrayList<>();
 	
-//	@OneToMany()
-//	private List<FaixaEtaria> faixaEtaria;
-
-	@OneToOne
-	private CampoExperiencia campoExperiencia;
+	@ManyToMany
+	private List<CampoExperiencia> campoExperienciaList = new ArrayList<>();
 	
 	@OneToOne
 	private AprendizagemDesenvolvimento aprendizagemDesenvolvimento;

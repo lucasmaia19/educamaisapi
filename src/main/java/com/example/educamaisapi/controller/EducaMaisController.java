@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -28,11 +31,13 @@ import com.example.educamaisapi.dto.AtividadeDTO;
 import com.example.educamaisapi.dto.CabecalhoDTO;
 import com.example.educamaisapi.model.Atividade;
 import com.example.educamaisapi.model.Cabecalho;
+import com.example.educamaisapi.model.CampoExperiencia;
 import com.example.educamaisapi.model.FaixaEtaria;
 import com.example.educamaisapi.model.Teste2;
 import com.example.educamaisapi.model.dto.MultSelectDTO;
 import com.example.educamaisapi.repository.AtividadeRepository;
 import com.example.educamaisapi.repository.CabecalhoRepository;
+import com.example.educamaisapi.repository.CampoExperienciaRepository;
 import com.example.educamaisapi.repository.FaixaEtariaRepository;
 import com.example.educamaisapi.service.AtividadeService;
 import com.example.educamaisapi.service.CabecalhoService;
@@ -54,6 +59,9 @@ public class EducaMaisController {
 	@Autowired
 	private FaixaEtariaRepository faixaEtariaRepository;
 
+	@Autowired
+	private CampoExperienciaRepository campoExperienciaRepository;
+	
 	@Autowired
 	private AtividadeService atividadeService;
 
@@ -100,47 +108,44 @@ public class EducaMaisController {
 	public Atividade atualizarCadastro(@RequestBody Atividade atividade, @PathVariable Long id) {
 		
 		Atividade atividadeSaved = educaMaisRepository.findById(id).get();
-		
+
 		BeanUtils.copyProperties(atividade, atividadeSaved, "id");
-		
+
 		return educaMaisRepository.save(atividadeSaved);
 	}
 
 	@PostMapping("/upload-com-dados")
-	public ResponseEntity<Atividade> uploadComDados(@ModelAttribute AtividadeDTO atividadeDTO, @RequestPart String opcoes) throws IOException {
-
-//		ObjectMapper mapper = new ObjectMapper(); 
-//		Teste2 teste2 = mapper.readValue(opcoes, Teste2.class);
+	public ResponseEntity<Atividade> uploadComDados(@ModelAttribute AtividadeDTO atividadeDTO, 
+			@RequestPart String faixaEtariaOp, @RequestPart String campoExperienciaOp) throws IOException {
 		
-		ObjectMapper mapper = new ObjectMapper(); 
-		Atividade faixaEtariaRes = mapper.readValue(opcoes, Atividade.class);
+		// Remove caracteres do inicio e fim da string.
+		faixaEtariaOp = faixaEtariaOp.replaceAll("\\[|\\]", "");
+		
+		// Quebra string em lista.
+		List<String> idListFaixaEtaria = Stream.of(faixaEtariaOp.split(",", -1)).collect(Collectors.toList());
 		
 		List<FaixaEtaria> faixaEtariaList = new ArrayList<>();
 		
-//		for (MultSelectDTO multSelectDTO : teste2.getNome()) {
-//			FaixaEtaria faixaEtariaSaved = faixaEtariaRepository.findById(multSelectDTO.getId()).get();
-//			faixaEtariaList.add(faixaEtariaSaved);
-//		}
+		for (String id : idListFaixaEtaria) {
+			FaixaEtaria faixaEtariaSaved = faixaEtariaRepository.findById(Long.valueOf(id)).get();
+			faixaEtariaList.add(faixaEtariaSaved);
+		}
+
+		campoExperienciaOp = campoExperienciaOp.replaceAll("\\[|\\]", "");
+		List<String> idListCampoExperiencia = Stream.of(campoExperienciaOp.split(",", -1)).collect(Collectors.toList());
 		
-		for (FaixaEtaria atividade : faixaEtariaRes.getFaixaEtariaList()) {
-		FaixaEtaria faixaEtariaSaved = faixaEtariaRepository.findById(atividade.getId()).get();
-		faixaEtariaList.add(faixaEtariaSaved);
-	}
-
-//		ObjectMapper mapper = new ObjectMapper(); 
-//		Atividade faixaEtariaRes = mapper.readValue(opcoes, Atividade.class);
-//
-//		List<FaixaEtaria> faixaEtariaList = new ArrayList<>();
-//
-//		for (FaixaEtaria atividade : faixaEtariaRes.getFaixaEtariaList()) {
-//			FaixaEtaria faixaEtariaSaved = faixaEtariaRepository.findById(atividade.getId()).get();
-//			faixaEtariaList.add(faixaEtariaSaved);
-//		}
-
-//		atividade.setFaixaEtariaList(faixaEtariaList);
-
-//		educaMaisRepository.save(atividade);
-
+		List<CampoExperiencia> campoExperienciaList = new ArrayList<>();
+		
+		for (String id : idListCampoExperiencia) {
+			CampoExperiencia campoExperienciaSaved = campoExperienciaRepository.findById(Long.valueOf(id)).get();
+			campoExperienciaList.add(campoExperienciaSaved);
+		}
+		
+		
+		atividadeDTO.setFaixaEtariaList(faixaEtariaList);
+		
+		atividadeDTO.setCampoExperienciaList(campoExperienciaList);
+		
 		return ResponseEntity.ok(atividadeService.uploadComDados(atividadeDTO, faixaEtariaList));
 	}
 
