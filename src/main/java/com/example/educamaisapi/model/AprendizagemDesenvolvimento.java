@@ -1,12 +1,16 @@
 package com.example.educamaisapi.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import lombok.Getter;
@@ -23,11 +27,20 @@ public class AprendizagemDesenvolvimento implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	private FaixaEtaria faixaEtaria;
+//	@OneToOne(cascade = CascadeType.ALL)
+//	private FaixaEtaria faixaEtaria;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	private CampoExperiencia campoExperiencia;
+//	@OneToOne(cascade = CascadeType.ALL)
+//	private CampoExperiencia campoExperiencia;
+
+//	@ManyToMany
+//	private List<FaixaEtaria> faixaEtariaListAd = new ArrayList<>();
+	
+//	@ManyToMany
+//	private List<CampoExperiencia> campoExperienciaListAd = new ArrayList<>();
+	
+	@OneToMany(mappedBy="aprendizagemDesenvolvimento")
+	private List<FaixaEtaria> faixaEtarias = new ArrayList<>();
 
 	private String codigo;
 

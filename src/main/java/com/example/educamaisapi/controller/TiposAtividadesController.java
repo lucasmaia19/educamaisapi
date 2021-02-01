@@ -31,7 +31,6 @@ public class TiposAtividadesController {
 	@Autowired
 	private CampoExperienciaRepository campoExperienciaRepository;
 
-
 	@GetMapping("faixa-etaria")
 	public List<FaixaEtaria> listaFaixaEtaria() {
 		return faixaEtariaRepository.findAll();
@@ -47,10 +46,12 @@ public class TiposAtividadesController {
 		return aprendizagemDesenvolvimentoRepository.findAll();
 	}
 
-	@GetMapping("aprendizagem-desenvolvimento/filter/faixa-etaria-id/{faixaEtariaId}")
-	public List<AprendizagemDesenvolvimento> listaAprendizagemDesenvolvimentoFilterFaixaEtariaId(@PathVariable Long faixaEtariaId) {
+	@GetMapping("aprendizagem-desenvolvimento/filter/faixa-etaria-id/{faixaEtariaId1}")
+	public List<AprendizagemDesenvolvimento> listaAprendizagemDesenvolvimentoFilterFaixaEtariaId(
+			@PathVariable Long faixaEtariaId1) {
 
-		List<AprendizagemDesenvolvimento> aprendizagemDesenvolvimentoList = aprendizagemDesenvolvimentoRepository.listByFaixaEtariaId(faixaEtariaId);
+		List<AprendizagemDesenvolvimento> aprendizagemDesenvolvimentoList = aprendizagemDesenvolvimentoRepository.listByFaixaEtariaId(
+				faixaEtariaId1);
 
 		return aprendizagemDesenvolvimentoList;
 	}
@@ -97,6 +98,16 @@ public class TiposAtividadesController {
 		return aprendizagemDesenvolvimentosList;
 	}
 	
-	
+	@GetMapping("aprendizagem-desenvolvimento/filter/campo-experiencia-id/{campoExperienciaId1}/{campoExperienciaId2}")
+	public List<AprendizagemDesenvolvimento> listaAprendizagemDesenvolvimentoFilterCampoExperienciaCom2Id(@PathVariable Long campoExperienciaId1, 
+			@PathVariable Long campoExperienciaId2) {
 
+		System.out.println(campoExperienciaId1);
+		System.out.println(campoExperienciaId2);
+
+		List<AprendizagemDesenvolvimento> aprendizagemDesenvolvimentoList = aprendizagemDesenvolvimentoRepository.listByCampoExperienciaCom2Id(campoExperienciaId1, campoExperienciaId2);
+
+		return aprendizagemDesenvolvimentoList;
+	}
+	
 }

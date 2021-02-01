@@ -9,7 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -36,5 +38,13 @@ public class FaixaEtaria implements Serializable{
 	@JsonIgnore
 	@ManyToMany(mappedBy="faixaEtariaList")
 	private List<Atividade> atividades = new ArrayList<>();
+	
+//	@JsonIgnore
+//	@ManyToMany(mappedBy="faixaEtariaListAd")
+//	private List<AprendizagemDesenvolvimento> aprendizagemDesenvolvimentos = new ArrayList<>();
+	
+	@JsonIgnore
+	@ManyToOne
+	private AprendizagemDesenvolvimento aprendizagemDesenvolvimento;
 
 }
