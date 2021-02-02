@@ -1,12 +1,15 @@
 package com.example.educamaisapi.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.collections.map.MultiValueMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.educamaisapi.model.AprendizagemDesenvolvimento;
@@ -66,15 +69,6 @@ public class TiposAtividadesController {
 		return aprendizagemDesenvolvimentoList;
 	}
 
-	@GetMapping("aprendizagem-desenvolvimento/filter/campo-experiencia-id/{campoExperienciaId}")
-	public List<AprendizagemDesenvolvimento> listaAprendizagemDesenvolvimentoFilterCampoExperienciaId(@PathVariable Long campoExperienciaId) {
-
-		System.out.println(campoExperienciaId);
-
-		List<AprendizagemDesenvolvimento> aprendizagemDesenvolvimentoList = aprendizagemDesenvolvimentoRepository.listByCampoExperienciaId(campoExperienciaId);
-
-		return aprendizagemDesenvolvimentoList;
-	}
 
 	@GetMapping("aprendizagem-desenvolvimento/filter/campo-experiencia-codigo/{campoExperienciaCodigo}")
 	public List<AprendizagemDesenvolvimento> listaAprendizagemDesenvolvimentoCampoExperienciaCodigo(@PathVariable String campoExperienciaCodigo) {
@@ -98,6 +92,16 @@ public class TiposAtividadesController {
 		return aprendizagemDesenvolvimentosList;
 	}
 	
+	@GetMapping("aprendizagem-desenvolvimento/filter/campo-experiencia-id/{campoExperienciaId}")
+	public List<AprendizagemDesenvolvimento> listaAprendizagemDesenvolvimentoFilterCampoExperienciaId(@PathVariable Long campoExperienciaId) {
+		
+		System.out.println(campoExperienciaId);
+		
+		List<AprendizagemDesenvolvimento> aprendizagemDesenvolvimentoList = aprendizagemDesenvolvimentoRepository.listByCampoExperienciaId(campoExperienciaId);
+		
+		return aprendizagemDesenvolvimentoList;
+	}
+	
 	@GetMapping("aprendizagem-desenvolvimento/filter/campo-experiencia-id/{campoExperienciaId1}/{campoExperienciaId2}")
 	public List<AprendizagemDesenvolvimento> listaAprendizagemDesenvolvimentoFilterCampoExperienciaCom2Id(@PathVariable Long campoExperienciaId1, 
 			@PathVariable Long campoExperienciaId2) {
@@ -108,6 +112,63 @@ public class TiposAtividadesController {
 		List<AprendizagemDesenvolvimento> aprendizagemDesenvolvimentoList = aprendizagemDesenvolvimentoRepository.listByCampoExperienciaCom2Id(campoExperienciaId1, campoExperienciaId2);
 
 		return aprendizagemDesenvolvimentoList;
+	}
+	
+	@GetMapping("aprendizagem-desenvolvimento/filter/campo-experiencia-id-list")
+	public List<AprendizagemDesenvolvimento> listaAprendizagemDesenvolvimentoFilterCampoExperienciaIdList(@RequestParam List<Long> campoExperienciaIdList) {
+
+		System.out.println(campoExperienciaIdList);
+
+		List<CampoExperiencia> campoExperienciaList = new ArrayList<>();
+		campoExperienciaIdList.forEach(id -> {
+			campoExperienciaList.add(campoExperienciaRepository.findById(id).get());
+		});
+		System.out.println(campoExperienciaList);
+
+		List<AprendizagemDesenvolvimento> aprendizagemDesenvolvimentoList = aprendizagemDesenvolvimentoRepository.findAllByCampoExperienciaIn(campoExperienciaList);
+		System.out.println(aprendizagemDesenvolvimentoList);
+		
+		return aprendizagemDesenvolvimentoList;
+
+	}
+	
+	@GetMapping("aprendizagem-desenvolvimento/filter/faixa-etaria-id-list")
+	public List<AprendizagemDesenvolvimento> listaAprendizagemDesenvolvimentoFilterFaixaEtariaIdList(@RequestParam List<Long> faixaEtariaIdList) {
+
+		List<FaixaEtaria> faixaEtariaList = new ArrayList<>();
+		faixaEtariaIdList.forEach(id -> {
+			faixaEtariaList.add(faixaEtariaRepository.findById(id).get());
+		});
+		
+		List<AprendizagemDesenvolvimento> aprendizagemDesenvolvimentoList = aprendizagemDesenvolvimentoRepository.findAllByFaixaEtariaIn(faixaEtariaList);
+
+		return aprendizagemDesenvolvimentoList;
+	}
+	
+	@GetMapping("aprendizagem-desenvolvimento/filter/ce-fe-id-list")
+//	public List<AprendizagemDesenvolvimento> listaAprendizagemDesenvolvimentoCeFeIdList(@RequestParam List<String> faixaEtariaIdList, 
+//			@RequestParam List<String> campoExperienciaIdList) {
+		
+		public List<AprendizagemDesenvolvimento> listaAprendizagemDesenvolvimentoCeFeIdList(@RequestParam MultiValueMap d) {
+		
+//		System.out.println("faixaEtariaIdList" + faixaEtariaIdList);
+//		System.out.println("campoExperienciaIdList" + campoExperienciaIdList);
+		
+//		List<CampoExperiencia> campoExperienciaList = new ArrayList<>();
+//		campoExperienciaIdList.forEach(id -> {
+//			campoExperienciaList.add(campoExperienciaRepository.findById(id).get());
+//		});
+		
+//		List<FaixaEtaria> faixaEtariaList = new ArrayList<>();
+//		faixaEtariaIdList.forEach(id -> {
+//			faixaEtariaList.add(faixaEtariaRepository.findById(id).get());
+//		});
+		
+//		List<AprendizagemDesenvolvimento> aprendizagemDesenvolvimentoListCeFe = aprendizagemDesenvolvimentoRepository
+//				.findAllByFaixaEtariaInOrCampoExperienciaIn(faixaEtariaList, campoExperienciaList);
+
+//		return aprendizagemDesenvolvimentoListCeFe;
+		return null;
 	}
 	
 }

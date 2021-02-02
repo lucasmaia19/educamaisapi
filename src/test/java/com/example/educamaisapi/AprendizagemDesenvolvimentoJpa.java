@@ -52,27 +52,27 @@ public class AprendizagemDesenvolvimentoJpa {
 		campoExperiencia.setDescricao("Espaços, tempos, quantidades, relações e transformações");
 
 		AprendizagemDesenvolvimento aprendizagemDesenvolvimento = new AprendizagemDesenvolvimento();
-		aprendizagemDesenvolvimento.setFaixaEtaria(faixaEtaria);
-		aprendizagemDesenvolvimento.setCampoExperiencia(campoExperiencia);
+//		aprendizagemDesenvolvimento.setFaixaEtaria(faixaEtaria);
+//		aprendizagemDesenvolvimento.setCampoExperiencia(campoExperiencia);
 
 //		aprendizagemDesenvolvimento.getFaixaEtaria().setCodigo("EI01");
 //		aprendizagemDesenvolvimento.getCampoExperiencia().setCodigo("TS01");
 		
 
-		aprendizagemDesenvolvimento.setCodigo("EI01TS01");
-		aprendizagemDesenvolvimento.getFaixaEtaria().setCodigo("EI01");
-		aprendizagemDesenvolvimento.getCampoExperiencia().setCodigo("TS01");
-		aprendizagemDesenvolvimento.getFaixaEtaria().setDescricao("Bebês (zero a 1 ano e 6 meses)");
-		aprendizagemDesenvolvimento.getCampoExperiencia().setDescricao("Traços, sons, cores e formas");
-		aprendizagemDesenvolvimento.setDescricao("Explorar sons produzidos com o próprio corpo e com objetos do ambiente.");
-
-
-		aprendizagemDesenvolvimento.setCodigo("EI01" + "TS02");
-		aprendizagemDesenvolvimento.getFaixaEtaria().setCodigo("EI01");
-		aprendizagemDesenvolvimento.getCampoExperiencia().setCodigo("TS01");
-		aprendizagemDesenvolvimento.getFaixaEtaria().setDescricao("Bebês (zero a 1 ano e 6 meses)");
-		aprendizagemDesenvolvimento.getCampoExperiencia().setDescricao("O eu, o outro e o nós");
-		aprendizagemDesenvolvimento.setDescricao("Explorar sons produzidos com o próprio corpo e com objetos do ambiente.");
+//		aprendizagemDesenvolvimento.setCodigo("EI01TS01");
+//		aprendizagemDesenvolvimento.getFaixaEtaria().setCodigo("EI01");
+//		aprendizagemDesenvolvimento.getCampoExperiencia().setCodigo("TS01");
+//		aprendizagemDesenvolvimento.getFaixaEtaria().setDescricao("Bebês (zero a 1 ano e 6 meses)");
+//		aprendizagemDesenvolvimento.getCampoExperiencia().setDescricao("Traços, sons, cores e formas");
+//		aprendizagemDesenvolvimento.setDescricao("Explorar sons produzidos com o próprio corpo e com objetos do ambiente.");
+//
+//
+//		aprendizagemDesenvolvimento.setCodigo("EI01" + "TS02");
+//		aprendizagemDesenvolvimento.getFaixaEtaria().setCodigo("EI01");
+//		aprendizagemDesenvolvimento.getCampoExperiencia().setCodigo("TS01");
+//		aprendizagemDesenvolvimento.getFaixaEtaria().setDescricao("Bebês (zero a 1 ano e 6 meses)");
+//		aprendizagemDesenvolvimento.getCampoExperiencia().setDescricao("O eu, o outro e o nós");
+//		aprendizagemDesenvolvimento.setDescricao("Explorar sons produzidos com o próprio corpo e com objetos do ambiente.");
 		
 		
 //		aprendizagemDesenvolvimento.setCodigo(faixaEtaria.getCodigo() + campoExperiencia.getCodigo());

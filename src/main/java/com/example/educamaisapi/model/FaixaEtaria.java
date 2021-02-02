@@ -34,7 +34,7 @@ public class FaixaEtaria implements Serializable{
 	private String codigo;
 
 	private String descricao;
-
+ 
 	@JsonIgnore
 	@ManyToMany(mappedBy="faixaEtariaList")
 	private List<Atividade> atividades = new ArrayList<>();
@@ -43,8 +43,8 @@ public class FaixaEtaria implements Serializable{
 //	@ManyToMany(mappedBy="faixaEtariaListAd")
 //	private List<AprendizagemDesenvolvimento> aprendizagemDesenvolvimentos = new ArrayList<>();
 	
-	@JsonIgnore
-	@ManyToOne
-	private AprendizagemDesenvolvimento aprendizagemDesenvolvimento;
+//	@JsonIgnore
+//	@ManyToOne
+//	private AprendizagemDesenvolvimento aprendizagemDesenvolvimento;
 
 }

@@ -29,12 +29,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.educamaisapi.dto.AtividadeDTO;
 import com.example.educamaisapi.dto.CabecalhoDTO;
+import com.example.educamaisapi.model.AprendizagemDesenvolvimento;
 import com.example.educamaisapi.model.Atividade;
 import com.example.educamaisapi.model.Cabecalho;
 import com.example.educamaisapi.model.CampoExperiencia;
 import com.example.educamaisapi.model.FaixaEtaria;
 import com.example.educamaisapi.model.Teste2;
 import com.example.educamaisapi.model.dto.MultSelectDTO;
+import com.example.educamaisapi.repository.AprendizagemDesenvolvimentoRepository;
 import com.example.educamaisapi.repository.AtividadeRepository;
 import com.example.educamaisapi.repository.CabecalhoRepository;
 import com.example.educamaisapi.repository.CampoExperienciaRepository;
@@ -61,6 +63,9 @@ public class EducaMaisController {
 
 	@Autowired
 	private CampoExperienciaRepository campoExperienciaRepository;
+	
+	@Autowired
+	private AprendizagemDesenvolvimentoRepository aprendizagemDesenvolvimentoRepository;
 	
 	@Autowired
 	private AtividadeService atividadeService;
@@ -116,7 +121,8 @@ public class EducaMaisController {
 
 	@PostMapping("/upload-com-dados")
 	public ResponseEntity<Atividade> uploadComDados(@ModelAttribute AtividadeDTO atividadeDTO, 
-			@RequestPart String faixaEtariaOp, @RequestPart String campoExperienciaOp) throws IOException {
+			@RequestPart String faixaEtariaOp, @RequestPart String campoExperienciaOp,
+			@RequestPart String aprendizagemDesenvolvimentoOp) throws IOException {
 		
 		// Remove caracteres do inicio e fim da string.
 		faixaEtariaOp = faixaEtariaOp.replaceAll("\\[|\\]", "");
@@ -141,10 +147,22 @@ public class EducaMaisController {
 			campoExperienciaList.add(campoExperienciaSaved);
 		}
 		
+		aprendizagemDesenvolvimentoOp = aprendizagemDesenvolvimentoOp.replaceAll("\\[|\\]", "");
+		List<String> idListAprendizagemDesenvolvimento = Stream.of(aprendizagemDesenvolvimentoOp.split(",", -1)).collect(Collectors.toList());
+		
+		List<AprendizagemDesenvolvimento> aprendizagemDesenvolvimentoList = new ArrayList<>();;
+		
+		for (String id : idListAprendizagemDesenvolvimento) {
+			AprendizagemDesenvolvimento aprendizagemDesenvolvimentoSaved = aprendizagemDesenvolvimentoRepository.findById(Long.valueOf(id)).get();
+			aprendizagemDesenvolvimentoList.add(aprendizagemDesenvolvimentoSaved);
+		}
+		
 		
 		atividadeDTO.setFaixaEtariaList(faixaEtariaList);
 		
 		atividadeDTO.setCampoExperienciaList(campoExperienciaList);
+		
+		atividadeDTO.setAprendizagemDesenvolvimentoList(aprendizagemDesenvolvimentoList);
 		
 		return ResponseEntity.ok(atividadeService.uploadComDados(atividadeDTO, faixaEtariaList));
 	}

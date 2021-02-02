@@ -28,7 +28,8 @@ public class AtividadeService {
 //		atividade.setAprendizagemDesenvolvimento(atividadeDTO.getAprendizagemDesenvolvimento());
 		atividade.setFaixaEtariaList(atividadeDTO.getFaixaEtariaList());
 		atividade.setCampoExperienciaList(atividadeDTO.getCampoExperienciaList());
-
+		atividade.setAprendizagemDesenvolvimentoList(atividadeDTO.getAprendizagemDesenvolvimentoList());
+		
 		if (atividadeDTO.getArquivo() != null) {
 			atividade.setArquivo(atividadeDTO.getArquivo().getBytes());
 			atividade.setArquivoNome(atividadeDTO.getArquivo().getOriginalFilename());

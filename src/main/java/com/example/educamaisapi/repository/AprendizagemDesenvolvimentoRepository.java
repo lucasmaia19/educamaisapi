@@ -8,6 +8,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.example.educamaisapi.model.AprendizagemDesenvolvimento;
+import com.example.educamaisapi.model.CampoExperiencia;
+import com.example.educamaisapi.model.FaixaEtaria;
 
 @Repository
 public interface AprendizagemDesenvolvimentoRepository extends JpaRepository<AprendizagemDesenvolvimento, Long> {
@@ -32,11 +34,16 @@ public interface AprendizagemDesenvolvimentoRepository extends JpaRepository<Apr
 			+ " faixa_etaria_id = :faixa_etaria_id", nativeQuery = true)
 	public List<AprendizagemDesenvolvimento> listByCeAndFeId(@Param("campo_experiencia_id") Long campoExperienciaId,
 			@Param("faixa_etaria_id") Long faixaEtariaId);
-	
 
 	@Query(value = "select * from aprendizagem_desenvolvimento WHERE campo_experiencia_id = :campo_experiencia_id1"
 			+ " OR campo_experiencia_id = :campo_experiencia_id2", nativeQuery = true)
 	public List<AprendizagemDesenvolvimento> listByCampoExperienciaCom2Id(@Param("campo_experiencia_id1") Long campoExperienciaId1,
 			@Param("campo_experiencia_id2") Long campoExperienciaId2);
+
+	public List<AprendizagemDesenvolvimento> findAllByCampoExperienciaIn(List<CampoExperiencia> campoExperiencia);
 	
+	public List<AprendizagemDesenvolvimento> findAllByFaixaEtariaIn(List<FaixaEtaria> faixaEtaria);
+	
+	public List<AprendizagemDesenvolvimento> findAllByFaixaEtariaInOrCampoExperienciaIn(List<FaixaEtaria> faixaEtaria, List<CampoExperiencia> campoExperiencia);
+
 }

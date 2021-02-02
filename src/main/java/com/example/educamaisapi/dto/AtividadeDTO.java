@@ -32,7 +32,10 @@ public class AtividadeDTO {
 	@ManyToMany
 	private List<CampoExperiencia> campoExperienciaList = new ArrayList<>();
 	
-	@OneToOne
-	private AprendizagemDesenvolvimento aprendizagemDesenvolvimento;
+//	@OneToOne
+//	private AprendizagemDesenvolvimento aprendizagemDesenvolvimento;
+	
+	@ManyToMany
+	private List<AprendizagemDesenvolvimento> aprendizagemDesenvolvimentoList = new ArrayList<>();
 
 }
