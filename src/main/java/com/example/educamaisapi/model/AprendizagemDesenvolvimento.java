@@ -39,11 +39,11 @@ public class AprendizagemDesenvolvimento implements Serializable {
 	@ManyToMany(mappedBy="AprendizagemDesenvolvimentoList")
 	private List<Atividade> atividades = new ArrayList<>();
 
-//	@ManyToMany
+//	@ManyToMany(cascade = CascadeType.ALL)
 //	private List<FaixaEtaria> faixaEtariaListAd = new ArrayList<>();
-	
-//	@ManyToMany
-//	private List<CampoExperiencia> campoExperienciaListAd = new ArrayList<>();
+//
+//	@ManyToMany(cascade = CascadeType.ALL)
+//	private List<CampoExperiencia> campoExperienciaListAprenDesen = new ArrayList<>();
 	
 //	@OneToMany(mappedBy="aprendizagemDesenvolvimento")
 //	private List<FaixaEtaria> faixaEtarias = new ArrayList<>();

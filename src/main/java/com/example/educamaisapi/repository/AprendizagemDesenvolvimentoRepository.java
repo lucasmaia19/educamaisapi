@@ -44,6 +44,6 @@ public interface AprendizagemDesenvolvimentoRepository extends JpaRepository<Apr
 	
 	public List<AprendizagemDesenvolvimento> findAllByFaixaEtariaIn(List<FaixaEtaria> faixaEtaria);
 	
-	public List<AprendizagemDesenvolvimento> findAllByFaixaEtariaInOrCampoExperienciaIn(List<FaixaEtaria> faixaEtaria, List<CampoExperiencia> campoExperiencia);
+	public List<AprendizagemDesenvolvimento> findAllByFaixaEtariaInAndCampoExperienciaIn(List<FaixaEtaria> faixaEtaria, List<CampoExperiencia> campoExperiencia);
 
 }

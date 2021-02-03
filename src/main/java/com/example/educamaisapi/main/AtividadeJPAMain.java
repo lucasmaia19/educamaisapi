@@ -2,7 +2,6 @@ package com.example.educamaisapi.main;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.rmi.NotBoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,12 +9,15 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.example.educamaisapi.model.AprendizagemDesenvolvimento;
 import com.example.educamaisapi.model.Atividade;
+import com.example.educamaisapi.model.CampoExperiencia;
 import com.example.educamaisapi.model.FaixaEtaria;
+import com.example.educamaisapi.repository.AprendizagemDesenvolvimentoRepository;
 import com.example.educamaisapi.repository.AtividadeRepository;
+import com.example.educamaisapi.repository.CampoExperienciaRepository;
 import com.example.educamaisapi.repository.FaixaEtariaRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +31,12 @@ public class AtividadeJPAMain {
 	
 	@Autowired
 	FaixaEtariaRepository faixaEtariaRepository;
+	
+	@Autowired
+	AprendizagemDesenvolvimentoRepository aprendizagemDesenvolvimentoRepository;
+	
+	@Autowired
+	CampoExperienciaRepository campoExperienciaRepository;
 
 //	public static void main(String[] args) {
 
@@ -112,6 +120,29 @@ public class AtividadeJPAMain {
 //		log.info(atividadeOptional.get().getFaixaEtariaList().size());
 
 		assertEquals(2, atividadeOptional.get().getFaixaEtariaList().size());
+	}
+	
+	
+	@Test
+	void findAllByFaixaEtariaInOrCampoExperienciaInTest() {
+
+		List<Long> faixaEtariaIdList = Arrays.asList(1l, 2l);
+		List<Long> campoExperienciaIdList = Arrays.asList(1l, 3l);
+
+		List<CampoExperiencia> campoExperienciaList = new ArrayList<>();
+		campoExperienciaIdList.forEach(id -> {
+			campoExperienciaList.add(campoExperienciaRepository.findById(id).get());
+		});
+
+		List<FaixaEtaria> faixaEtariaList = new ArrayList<>();
+		faixaEtariaIdList.forEach(id -> {
+			faixaEtariaList.add(faixaEtariaRepository.findById(id).get());
+		});
+
+		List<AprendizagemDesenvolvimento> aprendizagemDesenvolvimentoListCeFe = aprendizagemDesenvolvimentoRepository
+				.findAllByFaixaEtariaInAndCampoExperienciaIn(faixaEtariaList, campoExperienciaList);
+
+		assertEquals(1, aprendizagemDesenvolvimentoListCeFe.size());
 	}
 
 }

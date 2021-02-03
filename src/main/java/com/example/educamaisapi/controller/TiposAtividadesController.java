@@ -133,42 +133,44 @@ public class TiposAtividadesController {
 	}
 	
 	@GetMapping("aprendizagem-desenvolvimento/filter/faixa-etaria-id-list")
-	public List<AprendizagemDesenvolvimento> listaAprendizagemDesenvolvimentoFilterFaixaEtariaIdList(@RequestParam List<Long> faixaEtariaIdList) {
+	public List<AprendizagemDesenvolvimento> listaAprendizagemDesenvolvimentoFilterFaixaEtariaIdList(
+			@RequestParam List<Long> faixaEtariaIdList) {
 
 		List<FaixaEtaria> faixaEtariaList = new ArrayList<>();
 		faixaEtariaIdList.forEach(id -> {
 			faixaEtariaList.add(faixaEtariaRepository.findById(id).get());
 		});
 		
-		List<AprendizagemDesenvolvimento> aprendizagemDesenvolvimentoList = aprendizagemDesenvolvimentoRepository.findAllByFaixaEtariaIn(faixaEtariaList);
+		List<AprendizagemDesenvolvimento> aprendizagemDesenvolvimentoList = aprendizagemDesenvolvimentoRepository
+				.findAllByFaixaEtariaIn(faixaEtariaList);
 
 		return aprendizagemDesenvolvimentoList;
 	}
 	
 	@GetMapping("aprendizagem-desenvolvimento/filter/ce-fe-id-list")
-//	public List<AprendizagemDesenvolvimento> listaAprendizagemDesenvolvimentoCeFeIdList(@RequestParam List<String> faixaEtariaIdList, 
-//			@RequestParam List<String> campoExperienciaIdList) {
+	public List<AprendizagemDesenvolvimento> listaAprendizagemDesenvolvimentoCeFeIdList(
+			@RequestParam List<Long> faixaEtariaIdList, 
+			@RequestParam List<Long> campoExperienciaIdList) {
 		
-		public List<AprendizagemDesenvolvimento> listaAprendizagemDesenvolvimentoCeFeIdList(@RequestParam MultiValueMap d) {
 		
-//		System.out.println("faixaEtariaIdList" + faixaEtariaIdList);
-//		System.out.println("campoExperienciaIdList" + campoExperienciaIdList);
+		System.out.println("faixaEtariaIdList" + faixaEtariaIdList);
+		System.out.println("campoExperienciaIdList" + campoExperienciaIdList);
 		
-//		List<CampoExperiencia> campoExperienciaList = new ArrayList<>();
-//		campoExperienciaIdList.forEach(id -> {
-//			campoExperienciaList.add(campoExperienciaRepository.findById(id).get());
-//		});
+		List<CampoExperiencia> campoExperienciaList = new ArrayList<>();
+		campoExperienciaIdList.forEach(id -> {
+			campoExperienciaList.add(campoExperienciaRepository.findById(id).get());
+		});
 		
-//		List<FaixaEtaria> faixaEtariaList = new ArrayList<>();
-//		faixaEtariaIdList.forEach(id -> {
-//			faixaEtariaList.add(faixaEtariaRepository.findById(id).get());
-//		});
+		List<FaixaEtaria> faixaEtariaList = new ArrayList<>();
+		faixaEtariaIdList.forEach(id -> {
+			faixaEtariaList.add(faixaEtariaRepository.findById(id).get());
+		});
 		
-//		List<AprendizagemDesenvolvimento> aprendizagemDesenvolvimentoListCeFe = aprendizagemDesenvolvimentoRepository
-//				.findAllByFaixaEtariaInOrCampoExperienciaIn(faixaEtariaList, campoExperienciaList);
+		List<AprendizagemDesenvolvimento> aprendizagemDesenvolvimentoListCeFe = aprendizagemDesenvolvimentoRepository
+				.findAllByFaixaEtariaInAndCampoExperienciaIn(faixaEtariaList, campoExperienciaList);
 
-//		return aprendizagemDesenvolvimentoListCeFe;
-		return null;
+		return aprendizagemDesenvolvimentoListCeFe;
+//		return null;
 	}
 	
 }
