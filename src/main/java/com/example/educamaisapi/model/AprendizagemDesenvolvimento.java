@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -38,15 +37,6 @@ public class AprendizagemDesenvolvimento implements Serializable {
 	@JsonIgnore
 	@ManyToMany(mappedBy="AprendizagemDesenvolvimentoList")
 	private List<Atividade> atividades = new ArrayList<>();
-
-//	@ManyToMany(cascade = CascadeType.ALL)
-//	private List<FaixaEtaria> faixaEtariaListAd = new ArrayList<>();
-//
-//	@ManyToMany(cascade = CascadeType.ALL)
-//	private List<CampoExperiencia> campoExperienciaListAprenDesen = new ArrayList<>();
-	
-//	@OneToMany(mappedBy="aprendizagemDesenvolvimento")
-//	private List<FaixaEtaria> faixaEtarias = new ArrayList<>();
 
 	private String codigo;
 

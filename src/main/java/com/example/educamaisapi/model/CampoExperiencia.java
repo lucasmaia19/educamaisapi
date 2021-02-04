@@ -32,9 +32,5 @@ public class CampoExperiencia implements Serializable{
 	@JsonIgnore
 	@ManyToMany(mappedBy="campoExperienciaList")
 	private List<Atividade> atividades = new ArrayList<>();
-	
-//	@JsonIgnore
-//	@ManyToMany(mappedBy="campoExperienciaListAprenDesen")
-//	private List<AprendizagemDesenvolvimento> aprendizagemDesenvolvimentos = new ArrayList<>();
 
 }

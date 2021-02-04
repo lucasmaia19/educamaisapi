@@ -9,8 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,7 +26,6 @@ public class Cabecalho implements Serializable{
 	
 	private String turma;
 
-//	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private LocalDate data;
 	
 	private String aluno;
@@ -39,9 +36,6 @@ public class Cabecalho implements Serializable{
 	private String cep;
 	private String email;
 	
-//	@Embedded
-//	private EnderecoEscola enderecoEscola;
-
 	@Lob
 	private byte[] logoPrefeitura;
 	

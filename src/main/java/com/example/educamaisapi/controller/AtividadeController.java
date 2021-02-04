@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -34,8 +33,6 @@ import com.example.educamaisapi.model.Atividade;
 import com.example.educamaisapi.model.Cabecalho;
 import com.example.educamaisapi.model.CampoExperiencia;
 import com.example.educamaisapi.model.FaixaEtaria;
-import com.example.educamaisapi.model.Teste2;
-import com.example.educamaisapi.model.dto.MultSelectDTO;
 import com.example.educamaisapi.repository.AprendizagemDesenvolvimentoRepository;
 import com.example.educamaisapi.repository.AtividadeRepository;
 import com.example.educamaisapi.repository.CabecalhoRepository;
@@ -44,46 +41,39 @@ import com.example.educamaisapi.repository.FaixaEtariaRepository;
 import com.example.educamaisapi.service.AtividadeService;
 import com.example.educamaisapi.service.CabecalhoService;
 import com.example.educamaisapi.util.ReportUtil;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
-//@CrossOrigin(origins = "https://educa-mais-ui.herokuapp.com")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://educa-mais-ui.herokuapp.com")
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("atividade")
-public class EducaMaisController {
+public class AtividadeController {
 
 	@Autowired
-	private AtividadeRepository educaMaisRepository;
+	private AtividadeRepository atividadeRepository;
 
-	@Autowired
-	private CabecalhoRepository cabecalhoRepository;
-	
 	@Autowired
 	private FaixaEtariaRepository faixaEtariaRepository;
 
 	@Autowired
 	private CampoExperienciaRepository campoExperienciaRepository;
-	
-	@Autowired
-	private AprendizagemDesenvolvimentoRepository aprendizagemDesenvolvimentoRepository;
-	
-	@Autowired
-	private AtividadeService atividadeService;
 
 	@Autowired
-	private CabecalhoService cabecalhoService;
+	private AprendizagemDesenvolvimentoRepository aprendizagemDesenvolvimentoRepository;
+
+	@Autowired
+	private AtividadeService atividadeService;
 
 	@Autowired
 	private HttpServletResponse response;
 
 	@GetMapping
 	public List<Atividade> listaCadastros() {
-		return educaMaisRepository.findAll();
+		return atividadeRepository.findAll();
 	}
 
 	@GetMapping("/{id}")
 	public Optional<Atividade> listaUmCadastro(@PathVariable Long id) { 
-		return educaMaisRepository.findById(id);
+		return atividadeRepository.findById(id);
 	}
 
 	@GetMapping("/gerar-pdf/{id_atividade}/{id_cabecalho}")
@@ -103,7 +93,7 @@ public class EducaMaisController {
 
 	@DeleteMapping("/{id}")
 	public Map<String, Object> deletarCadastro(@PathVariable Long id) {
-		educaMaisRepository.deleteById(id);
+		atividadeRepository.deleteById(id);
 
 		Map<String, Object> responseMap = new HashMap<>();
 		return responseMap;
@@ -112,11 +102,11 @@ public class EducaMaisController {
 	@PutMapping("/{id}")
 	public Atividade atualizarCadastro(@RequestBody Atividade atividade, @PathVariable Long id) {
 		
-		Atividade atividadeSaved = educaMaisRepository.findById(id).get();
+		Atividade atividadeSaved = atividadeRepository.findById(id).get();
 
 		BeanUtils.copyProperties(atividade, atividadeSaved, "id");
 
-		return educaMaisRepository.save(atividadeSaved);
+		return atividadeRepository.save(atividadeSaved);
 	}
 
 	@PostMapping("/upload-com-dados")
@@ -125,19 +115,20 @@ public class EducaMaisController {
 			@RequestPart String aprendizagemDesenvolvimentoOp) throws IOException {
 		
 		// Remove caracteres do inicio e fim da string.
-		faixaEtariaOp = faixaEtariaOp.replaceAll("\\[|\\]", "");
-		
+		faixaEtariaOp = faixaEtariaOp.replaceAll("[\\\\\"]", "");
+
 		// Quebra string em lista.
 		List<String> idListFaixaEtaria = Stream.of(faixaEtariaOp.split(",", -1)).collect(Collectors.toList());
-		
+
 		List<FaixaEtaria> faixaEtariaList = new ArrayList<>();
-		
+
 		for (String id : idListFaixaEtaria) {
+			System.out.println(id);
 			FaixaEtaria faixaEtariaSaved = faixaEtariaRepository.findById(Long.valueOf(id)).get();
 			faixaEtariaList.add(faixaEtariaSaved);
 		}
 
-		campoExperienciaOp = campoExperienciaOp.replaceAll("\\[|\\]", "");
+		campoExperienciaOp = campoExperienciaOp.replaceAll("[\\\\\"]", "");
 		List<String> idListCampoExperiencia = Stream.of(campoExperienciaOp.split(",", -1)).collect(Collectors.toList());
 		
 		List<CampoExperiencia> campoExperienciaList = new ArrayList<>();
@@ -147,7 +138,7 @@ public class EducaMaisController {
 			campoExperienciaList.add(campoExperienciaSaved);
 		}
 		
-		aprendizagemDesenvolvimentoOp = aprendizagemDesenvolvimentoOp.replaceAll("\\[|\\]", "");
+		aprendizagemDesenvolvimentoOp = aprendizagemDesenvolvimentoOp.replaceAll("[\\\\\"]", "");
 		List<String> idListAprendizagemDesenvolvimento = Stream.of(aprendizagemDesenvolvimentoOp.split(",", -1)).collect(Collectors.toList());
 		
 		List<AprendizagemDesenvolvimento> aprendizagemDesenvolvimentoList = new ArrayList<>();;
@@ -157,7 +148,6 @@ public class EducaMaisController {
 			aprendizagemDesenvolvimentoList.add(aprendizagemDesenvolvimentoSaved);
 		}
 		
-		
 		atividadeDTO.setFaixaEtariaList(faixaEtariaList);
 		
 		atividadeDTO.setCampoExperienciaList(campoExperienciaList);
@@ -165,66 +155,6 @@ public class EducaMaisController {
 		atividadeDTO.setAprendizagemDesenvolvimentoList(aprendizagemDesenvolvimentoList);
 		
 		return ResponseEntity.ok(atividadeService.uploadComDados(atividadeDTO, faixaEtariaList));
-	}
-
-	@PostMapping("/upload-com-dados-cabecalho")
-	public ResponseEntity<Cabecalho> uploadComDadosCabecalho(@ModelAttribute CabecalhoDTO cabecalhoDTO) throws IOException {
-		
-//		Instant dataAquisicaoInstant = Instant.parse(cabecalhoDTO.getData());
-//		OffsetDateTime dataAquisicaoOffSet = dataAquisicaoInstant.atOffset(ZoneOffset.UTC); 
-//
-//		DateTimeFormatter data = DateTimeFormatter.ofPattern("ddMMyyyy");
-//		String dataString = dataAquisicaoOffSet.format(data);
-//
-//		cabecalhoDTO.setData(dataString);
-
-		return ResponseEntity.ok(cabecalhoService.uploadComDadosCabecalho(cabecalhoDTO));
-	
-	}
-
-	@GetMapping("/cabecalho")
-	public List<Cabecalho> listarCabecalho() {
-		return cabecalhoRepository.findAll();
-	}
-	
-	@DeleteMapping("cabecalho/{id}")
-	public Map<String, Object> deletarCabecalho(@PathVariable Long id) {
-		cabecalhoRepository.deleteById(id);
-
-		Map<String, Object> responseMap = new HashMap<>();
-		return responseMap;
-	}
-
-	@PutMapping("cabecalho/{id}")
-	public Cabecalho atualizarCabecalho(@RequestBody Cabecalho cabecalho, @PathVariable Long id) {
-		
-		Cabecalho cabecalhoSaved = cabecalhoRepository.findById(id).get();
-		
-		BeanUtils.copyProperties(cabecalho, cabecalhoSaved, "id");
-
-		return cabecalhoRepository.save(cabecalhoSaved);
-	}
-	
-	@GetMapping("cabecalho/{id}")
-	public java.util.Optional<Cabecalho> consultarIdCabecalho(@PathVariable Long id) {
-
-	return cabecalhoRepository.findById(id);
-
-	}
-
-	@PostMapping("/teste")
-	public ResponseEntity<Teste2> teste(@RequestPart String opcoes) throws IOException {
-
-		ObjectMapper mapper = new ObjectMapper(); 
-		Teste2 teste2 = mapper.readValue(opcoes, Teste2.class);
-//
-//		String resposta = "";
-//		for (MultSelectDTO item : teste2.getNome()) {
-//			System.out.println(item);
-//			resposta += item + "; ";
-//		}
-//	
-		return ResponseEntity.ok(teste2);
 	}
 
 }
