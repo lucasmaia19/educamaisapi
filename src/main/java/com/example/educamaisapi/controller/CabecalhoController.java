@@ -42,8 +42,8 @@ import com.example.educamaisapi.service.AtividadeService;
 import com.example.educamaisapi.service.CabecalhoService;
 import com.example.educamaisapi.util.ReportUtil;
 
-@CrossOrigin(origins = "https://educa-mais-ui.herokuapp.com")
-//@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "https://educa-mais-ui.herokuapp.com")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("cabecalho")
 public class CabecalhoController {
