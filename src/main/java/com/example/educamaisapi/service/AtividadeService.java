@@ -17,7 +17,7 @@ public class AtividadeService {
 	@Autowired
 	private AtividadeRepository atividadeRepository;
 
-	public Atividade uploadComDados(AtividadeDTO atividadeDTO, List<FaixaEtaria> faixaEtariaList) throws IOException {
+	public Atividade uploadComDados(AtividadeDTO atividadeDTO) throws IOException {
 		Atividade atividade = new Atividade();
 
 		atividade.setNome(atividadeDTO.getNome());

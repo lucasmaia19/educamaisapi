@@ -39,7 +39,8 @@ import com.example.educamaisapi.service.AtividadeService;
 import com.example.educamaisapi.util.ReportUtil;
 
 //@CrossOrigin(origins = "https://educa-mais-ui.herokuapp.com")
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("atividade")
 public class AtividadeController {
@@ -107,50 +108,54 @@ public class AtividadeController {
 
 	@PostMapping("/upload-com-dados")
 	public ResponseEntity<Atividade> uploadComDados(@ModelAttribute AtividadeDTO atividadeDTO, 
-			@RequestPart String faixaEtariaOp, @RequestPart String campoExperienciaOp,
-			@RequestPart String aprendizagemDesenvolvimentoOp) throws IOException {
+			@RequestPart(required = false) String faixaEtariaOp, @RequestPart(required = false) String campoExperienciaOp,
+			@RequestPart(required = false) String aprendizagemDesenvolvimentoOp) throws IOException {
 		
-		// Remove caracteres do inicio e fim da string.
-		faixaEtariaOp = faixaEtariaOp.replaceAll("[\\\\\"]", "");
+		if (faixaEtariaOp != null) {
 
-		// Quebra string em lista.
-		List<String> idListFaixaEtaria = Stream.of(faixaEtariaOp.split(",", -1)).collect(Collectors.toList());
-
-		List<FaixaEtaria> faixaEtariaList = new ArrayList<>();
-
-		for (String id : idListFaixaEtaria) {
-			System.out.println(id);
-			FaixaEtaria faixaEtariaSaved = faixaEtariaRepository.findById(Long.valueOf(id)).get();
-			faixaEtariaList.add(faixaEtariaSaved);
+			faixaEtariaOp = faixaEtariaOp.replaceAll("[\\\\\"]", "");
+			List<String> idListFaixaEtaria = Stream.of(faixaEtariaOp.split(",", -1)).collect(Collectors.toList());
+	
+			List<FaixaEtaria> faixaEtariaList = new ArrayList<>();
+			if (faixaEtariaList != null) {
+				for (String id : idListFaixaEtaria) {
+					FaixaEtaria faixaEtariaSaved = faixaEtariaRepository.findById(Long.valueOf(id)).get();
+					faixaEtariaList.add(faixaEtariaSaved);
+				}
+			}
+			
+			atividadeDTO.setFaixaEtariaList(faixaEtariaList);
 		}
 
-		campoExperienciaOp = campoExperienciaOp.replaceAll("[\\\\\"]", "");
-		List<String> idListCampoExperiencia = Stream.of(campoExperienciaOp.split(",", -1)).collect(Collectors.toList());
-		
-		List<CampoExperiencia> campoExperienciaList = new ArrayList<>();
-		
-		for (String id : idListCampoExperiencia) {
-			CampoExperiencia campoExperienciaSaved = campoExperienciaRepository.findById(Long.valueOf(id)).get();
-			campoExperienciaList.add(campoExperienciaSaved);
+		if (faixaEtariaOp != null) {
+
+			campoExperienciaOp = campoExperienciaOp.replaceAll("[\\\\\"]", "");
+			List<String> idListCampoExperiencia = Stream.of(campoExperienciaOp.split(",", -1)).collect(Collectors.toList());
+
+			List<CampoExperiencia> campoExperienciaList = new ArrayList<>();
+			for (String id : idListCampoExperiencia) {
+				CampoExperiencia campoExperienciaSaved = campoExperienciaRepository.findById(Long.valueOf(id)).get();
+				campoExperienciaList.add(campoExperienciaSaved);
+			}
+
+			atividadeDTO.setCampoExperienciaList(campoExperienciaList);
 		}
 		
-		aprendizagemDesenvolvimentoOp = aprendizagemDesenvolvimentoOp.replaceAll("[\\\\\"]", "");
-		List<String> idListAprendizagemDesenvolvimento = Stream.of(aprendizagemDesenvolvimentoOp.split(",", -1)).collect(Collectors.toList());
-		
-		List<AprendizagemDesenvolvimento> aprendizagemDesenvolvimentoList = new ArrayList<>();;
-		
-		for (String id : idListAprendizagemDesenvolvimento) {
-			AprendizagemDesenvolvimento aprendizagemDesenvolvimentoSaved = aprendizagemDesenvolvimentoRepository.findById(Long.valueOf(id)).get();
-			aprendizagemDesenvolvimentoList.add(aprendizagemDesenvolvimentoSaved);
+		if (faixaEtariaOp != null) {
+
+			aprendizagemDesenvolvimentoOp = aprendizagemDesenvolvimentoOp.replaceAll("[\\\\\"]", "");
+			List<String> idListAprendizagemDesenvolvimento = Stream.of(aprendizagemDesenvolvimentoOp.split(",", -1)).collect(Collectors.toList());
+			
+			List<AprendizagemDesenvolvimento> aprendizagemDesenvolvimentoList = new ArrayList<>();;
+			for (String id : idListAprendizagemDesenvolvimento) {
+				AprendizagemDesenvolvimento aprendizagemDesenvolvimentoSaved = aprendizagemDesenvolvimentoRepository.findById(Long.valueOf(id)).get();
+				aprendizagemDesenvolvimentoList.add(aprendizagemDesenvolvimentoSaved);
+			}
+
+			atividadeDTO.setAprendizagemDesenvolvimentoList(aprendizagemDesenvolvimentoList);
 		}
-		
-		atividadeDTO.setFaixaEtariaList(faixaEtariaList);
-		
-		atividadeDTO.setCampoExperienciaList(campoExperienciaList);
-		
-		atividadeDTO.setAprendizagemDesenvolvimentoList(aprendizagemDesenvolvimentoList);
-		
-		return ResponseEntity.ok(atividadeService.uploadComDados(atividadeDTO, faixaEtariaList));
+
+		return ResponseEntity.ok(atividadeService.uploadComDados(atividadeDTO));
 	}
 
 }
