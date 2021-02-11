@@ -18,7 +18,8 @@ import com.example.educamaisapi.repository.CampoExperienciaRepository;
 import com.example.educamaisapi.repository.FaixaEtariaRepository;
 
 //@CrossOrigin(origins = "https://educa-mais-ui.herokuapp.com")
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("atividade")
 public class ListagemBNCCController {

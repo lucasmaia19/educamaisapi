@@ -110,12 +110,12 @@ public class AtividadeController {
 	public ResponseEntity<Atividade> uploadComDados(@ModelAttribute AtividadeDTO atividadeDTO, 
 			@RequestPart(required = false) String faixaEtariaOp, @RequestPart(required = false) String campoExperienciaOp,
 			@RequestPart(required = false) String aprendizagemDesenvolvimentoOp) throws IOException {
-		
+
 		if (faixaEtariaOp != null) {
 
 			faixaEtariaOp = faixaEtariaOp.replaceAll("[\\\\\"]", "");
 			List<String> idListFaixaEtaria = Stream.of(faixaEtariaOp.split(",", -1)).collect(Collectors.toList());
-	
+
 			List<FaixaEtaria> faixaEtariaList = new ArrayList<>();
 			if (faixaEtariaList != null) {
 				for (String id : idListFaixaEtaria) {
@@ -123,7 +123,7 @@ public class AtividadeController {
 					faixaEtariaList.add(faixaEtariaSaved);
 				}
 			}
-			
+
 			atividadeDTO.setFaixaEtariaList(faixaEtariaList);
 		}
 
